@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tumwiine Innocent | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      scroll-behavior: smooth;
+      margin: 0;
+    }
+
+    header {
+      display: flex;
+      background-color: rgba(255, 255, 255, 0);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 10%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    header nav a:hover,
+    header nav a.active {
+    
+      border-bottom: 2px solid #00ffcc;
+      color: #00ffcc;
+    }
+    
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding:50px 5%;
+      min-height: 100vh;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .hero .content {
+      max-width: 100%;
+    }
+
+    .hero .content h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero .content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero .buttons a {
+      padding: 10px 25px;
+      margin-right: 15px;
+      background-color: #00ffcc;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero .buttons a:hover {
+      background-color: rgb(2, 54, 46);
+      color:white;
+    }
+
+   .profile-img-stack {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  margin-top: 20px;
+  perspective: 1000px;
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease;
+    background: #17013f;
+}
+
+@media (max-width: 600px) {
+    .profile-img-stack {
+        width: 260px;
+        height: 260px;
+    }
+    .card {
+        border-radius: 10px;
+    }
+    .layer-front img {
+        border-radius: 10px;
+    }
+}
+/* Individual Layers */
+.layer-back {
+    transform: rotate(-6deg) translateX(-18px) translateY(16px);
+    z-index: 1;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.layer-mid {
+    transform: rotate(-4deg) translateX(-12px) translateY(8px);
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.layer-front {
+    transform: rotate(0deg);
+    z-index: 3;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Hover Effects */
+.profile-img-stack:hover .layer-back {
+    transform: rotate(-14deg) translateX(-32px) translateY(28px) scale(1.04);
+}
+.profile-img-stack:hover .layer-mid {
+    transform: rotate(-9deg) translateX(-22px) translateY(14px) scale(1.03);
+}
+.profile-img-stack:hover .layer-front {
+    transform: rotate(3deg) scale(1.02);
+}
+
+/* Image Styling */
+.layer-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+}
+
+    section {
+      padding: 80px 10%;
+    }
+
+
+
+    .projects img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .contact-buttons {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .contact-buttons a {
+      padding: 12px 20px;
+      margin-right: 20px;
+      background-color: rgb(6, 95, 39);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .contact-buttons a.call {
+      background-color: #128C7E;
+    }
+
+    .contact-buttons a:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      .contact-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+      }
+      .contact-buttons a {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+
+    section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+    footer {
+      background-color: #111;
+      padding: 30px 10%;
+      text-align: center;
+    }
+
+    footer .socials a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    footer .socials a:hover {
+      color: #00ffcc;
+    }
+  a {
+      
+      text-decoration: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2>Tumwiine Innocent</h2>
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+<section class="hero" id="home">
+    <div class="content">
+        <h1 style="background: linear-gradient(90deg, #00c6ff 0%, #7f2ff0 100%);
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+               background-clip: text;
+               color: transparent;">
+          Hi, I'm Tumwiine <br> Innocent
+        </h1>
+        <p>
+            A passionate Front-End Developer & Graphic Designer <br>
+            crafting beautiful web experiences.
+        </p>
+        <ul style="margin: 18px 0 24px 18px; font-size: 1.08rem; color: #bffcff; list-style: disc;">
+            <li>Specialized in responsive websites, UI/UX, and interactive design</li>
+            <li>Experienced with React.js, Tailwind CSS, and modern JavaScript</li>
+            <li>Proficient in Photoshop, Illustrator, and motion graphics</li>
+            <li>Open to freelance, collaborations, and remote opportunities</li>
+        </ul>
+        <p style="color:#ffd700; font-size:1.05rem;">
+            Let's build something amazing together!
+        </p>
+        <div class="buttons">
+            <a href="#projects">View Projects</a>
+            <a href="#contact">Contact Me</a>
+        </div>
+    </div>
+
+    <div class="profile-img-stack">
+        <div class="card layer-back"></div>
+        <div class="card layer-mid"></div>
+        <div class="card layer-front">
+            <img src="profile.jpg" alt="Profile Image" />
+        </div>
+    </div>
+</section>
+<style>
+    @media (max-width: 768px) {
+        .hero {
+            flex-direction: column;
+            padding: 60px 5%;
+            text-align: center;
+        }
+        .hero .content {
+            margin-bottom: 30px;
+            max-width: 100%;
+        }
+        .profile-img-stack {
+            margin: 0 auto;
+        }
+    }
+</style>
+
+  
+
+  <section class="skills" id="skills" >
+  <h2>Skills</h2>
+  <div class="skills-row">
+  <div class="skill-container" data-percent="50">
+    <div class="skill-header">
+    <span class="skill-name"></span>
+      <svg width="22" height="22" viewBox="0 0 32 32" style="vertical-align:middle;margin-right:6px;"><rect width="32" height="32" rx="6" fill="#f7df1e"/><path d="M19.6 24.7c.4.7.8 1.3 1.7 1.3.8 0 1.3-.3 1.3-1.6v-7.3h2.4v7.4c0 2.5-1.5 3.6-3.6 3.6-1.9 0-3-1-3.6-2.2l2-1.2zm-8.5.1c.4.8.8 1.4 1.7 1.4.8 0 1.3-.3 1.3-1.6v-7.3h2.4v7.4c0 2.5-1.5 3.6-3.6 3.6-1.9 0-3-1-3.6-2.2l2-1.3z" fill="#000"/></svg>
+      JavaScript
+    </span>
+    <span class="percent">0%</span>
+    </div>
+    <svg class="circular-progress" width="100" height="100" viewBox="0 0 120 120">
+    <circle class="progress-bg" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    <circle class="progress-bar" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    </svg>
+    <input type="range" min="0" max="100" value="0" class="skill-slider" />
+  </div>
+
+  <div class="skill-container" data-percent="80">
+    <div class="skill-header">
+    <span class="skill-name">
+      <svg width="22" height="22" viewBox="0 0 32 32" style="vertical-align:middle;margin-right:6px;"><g><circle cx="16" cy="16" r="16" fill="#61dafb"/><g fill="none" stroke="#fff" stroke-width="2"><ellipse rx="11" ry="4.2" cx="16" cy="16"/><ellipse rx="11" ry="4.2" cx="16" cy="16" transform="rotate(60 16 16)"/><ellipse rx="11" ry="4.2" cx="16" cy="16" transform="rotate(120 16 16)"/></g><circle cx="16" cy="16" r="2.5" fill="#fff"/></g></svg>
+      React.js
+    </span>
+    <span class="percent">0%</span>
+    </div>
+    <svg class="circular-progress" width="100" height="100" viewBox="0 0 120 120">
+    <circle class="progress-bg" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    <circle class="progress-bar" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    </svg>
+    <input type="range" min="0" max="100" value="0" class="skill-slider" />
+  </div>
+
+  <div class="skill-container" data-percent="75">
+    <div class="skill-header">
+    <span class="skill-name">
+      <svg width="22" height="22" viewBox="0 0 32 32" style="vertical-align:middle;margin-right:6px;"><rect width="32" height="32" rx="6" fill="#001e36"/><path d="M8.5 24.5l2.5-16.5h10l2.5 16.5-7.5 2.5z" fill="#31c5f0"/><path d="M16 24.5v-14h5.5l-2.5 14z" fill="#fff"/><path d="M16 24.5l-5.5-14h5.5z" fill="#fff"/></svg>
+      Photoshop
+    </span>
+    <span class="percent">0%</span>
+    </div>
+    <svg class="circular-progress" width="100" height="100" viewBox="0 0 120 120">
+    <circle class="progress-bg" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    <circle class="progress-bar" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    </svg>
+    <input type="range" min="0" max="100" value="0" class="skill-slider" />
+  </div>
+
+  <div class="skill-container" data-percent="70">
+    <div class="skill-header">
+    <span class="skill-name">
+      <svg width="22" height="22" viewBox="0 0 32 32" style="vertical-align:middle;margin-right:6px;"><circle cx="16" cy="16" r="16" fill="#ffb300"/><path d="M10 22c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke="#fff" stroke-width="2"/><circle cx="16" cy="13" r="2" fill="#fff"/></svg>
+      UI/UX Design
+    </span>
+    <span class="percent">0%</span>
+    </div>
+    <svg class="circular-progress" width="100" height="100" viewBox="0 0 120 120">
+    <circle class="progress-bg" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    <circle class="progress-bar" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    </svg>
+    <input type="range" min="0" max="100" value="0" class="skill-slider" />
+  </div>
+
+   <div class="skill-container" data-percent="90">
+    <div class="skill-header">
+    <span class="skill-name">
+      <svg width="22" height="22" viewBox="0 0 32 32" style="vertical-align:middle;margin-right:6px;"><rect width="32" height="32" rx="6" fill="#264de4"/><path d="M7 5l2.2 24.7 8.8 2.3 8.8-2.3L25 5z" fill="#2965f1"/><path d="M16 27.1l7.1-1.9L24.7 7H16z" fill="#fff"/><path d="M16 27.1l-7.1-1.9L7.3 7H16z" fill="#ebebeb"/><path d="M16 14.2h-3.6l.2 2.2H16v2.2h-3.2l.2 2.2H16v2.2h-5.2l-.5-5.6-.1-1.1.1-1.1.5-5.6H16z" fill="#fff"/><path d="M16 14.2h3.6l-.2 2.2H16v2.2h3.2l-.2 2.2H16v2.2h5.2l.5-5.6.1-1.1-.1-1.1-.5-5.6H16z" fill="#ebebeb"/></svg>
+      HTML, CSS
+    </span>
+    <span class="percent">0%</span>
+    </div>
+    <svg class="circular-progress" width="100" height="100" viewBox="0 0 120 120">
+    <circle class="progress-bg" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    <circle class="progress-bar" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    </svg>
+    <input type="range" min="0" max="100" value="0" class="skill-slider" />
+  </div>
+
+  <div class="skill-container" data-percent="50">
+    <div class="skill-header">
+    <span class="skill-name">
+      <svg width="22" height="22" viewBox="0 0 32 32" style="vertical-align:middle;margin-right:6px;"><rect width="32" height="32" rx="6" fill="#38bdf8"/><path d="M16 8c-4.5 0-8.2 2.1-10.5 5.7.2.2.4.3.6.4C8.2 11.7 11.7 10 16 10s7.8 1.7 9.9 4.1c.2-.1.4-.3.6-.4C24.2 10.1 20.5 8 16 8zm0 4c-3.3 0-6.2 1.3-8.1 3.3.2.2.4.3.6.4C10.7 13.3 13.2 12 16 12s5.3 1.3 7.5 3.7c.2-.1.4-.3.6-.4C22.2 13.3 19.3 12 16 12zm0 4c-2.1 0-4 .8-5.4 2.1.2.2.4.3.6.4C12.7 16.1 14.3 15.5 16 15.5s3.3.6 4.8 1.9c.2-.1.4-.3.6-.4C20 16.8 18.1 16 16 16zm0 4c-1.1 0-2.1.3-2.9.8.2.2.4.3.6.4.6-.3 1.3-.5 2.3-.5s1.7.2 2.3.5c.2-.1.4-.3.6-.4-.8-.5-1.8-.8-2.9-.8z" fill="#fff"/></svg>
+      Tailwind CSS
+    </span>
+    <span class="percent">0%</span>
+    </div>
+    <svg class="circular-progress" width="100" height="100" viewBox="0 0 120 120">
+    <circle class="progress-bg" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    <circle class="progress-bar" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    </svg>
+    <input type="range" min="0" max="100" value="0" class="skill-slider" />
+  </div>
+
+  <div class="skill-container" data-percent="82">
+    <div class="skill-header">
+    <span class="skill-name">
+      <svg width="22" height="22" viewBox="0 0 32 32" style="vertical-align:middle;margin-right:6px;"><rect width="32" height="32" rx="6" fill="#ff9a00"/><path d="M8 24l2.5-16h11l2.5 16-8 2.5z" fill="#fff"/><path d="M16 24.5v-14h5.5l-2.5 14z" fill="#fff"/><path d="M16 24.5l-5.5-14h5.5z" fill="#fff"/><path d="M16 13.5l2.5 7.5h-5z" fill="#ff9a00"/></svg>
+      Illustrator
+    </span>
+    <span class="percent">0%</span>
+    </div>
+    <svg class="circular-progress" width="100" height="100" viewBox="0 0 120 120">
+    <circle class="progress-bg" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    <circle class="progress-bar" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    </svg>
+    <input type="range" min="0" max="100" value="0" class="skill-slider" />
+  </div>
+
+  <div class="skill-container" data-percent="70">
+    <div class="skill-header">
+    <span class="skill-name">
+      <svg width="22" height="22" viewBox="0 0 32 32" style="vertical-align:middle;margin-right:6px;"><circle cx="16" cy="16" r="16" fill="#e040fb"/><rect x="10" y="10" width="12" height="12" rx="2" fill="#fff"/><path d="M14 14h4v4h-4z" fill="#e040fb"/></svg>
+      Motion Graphics
+    </span>
+    <span class="percent">0%</span>
+    </div>
+    <svg class="circular-progress" width="100" height="100" viewBox="0 0 120 120">
+    <circle class="progress-bg" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    <circle class="progress-bar" cx="60" cy="60" r="54" stroke-width="12" fill="none" />
+    </svg>
+    <input type="range" min="0" max="100" value="0" class="skill-slider" />
+  </div>
+  </div>
+</section>
+
+<style>
+  #skills {
+    
+    margin: 20px;
+    padding: 10px;
+  }
+  #skills h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #00ffd5;
+    font-weight: 600;
+  }
+  .skills-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center; /* center on large screens */
+  }
+  .skill-container {
+    background: #0a0a0a49;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 1rem;
+    width: 220px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .skill-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    color: #eee;
+    margin-bottom: 0.7rem;
+    font-size: 1.1rem;
+  }
+  .percent {
+    color: #00ffd5;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: right;
+  }
+  .circular-progress {
+    transform: rotate(-90deg);
+    margin-bottom: 1rem;
+  }
+  .progress-bg {
+    stroke: #222;
+  }
+  .progress-bar {
+    stroke: #00ffd5;
+    stroke-linecap: round;
+    stroke-dasharray: 339.292; /* 2πr where r=54 */
+    stroke-dashoffset: 339.292;
+    transition: stroke-dashoffset 0.3s ease;
+  }
+  .skill-slider {
+    width: 100%;
+    cursor: pointer;
+  }
+  .skill-slider:hover {
+    opacity: 0.9;
+  }
+  @media (max-width: 768px) {
+    .skills-row {
+      justify-content: center;
+    }
+    .skill-container {
+      width: 45%;
+    }
+  }
+  @media (max-width: 480px) {
+    .skill-container {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const skillContainers = document.querySelectorAll('.skill-container');
+    const circumference = 2 * Math.PI * 54; // circle radius = 54
+
+    skillContainers.forEach(container => {
+      const targetPercent = parseInt(container.getAttribute('data-percent'));
+      const percentText = container.querySelector('.percent');
+      const progressBar = container.querySelector('.progress-bar');
+      const slider = container.querySelector('.skill-slider');
+
+      let currentPercent = 0;
+      let animationFrame;
+
+      function setProgress(percent) {
+        const offset = circumference - (percent / 100) * circumference;
+        progressBar.style.strokeDashoffset = offset;
+        percentText.textContent = percent + '%';
+        slider.value = percent;
+      }
+
+      function animateProgress() {
+        if (currentPercent >= targetPercent) return;
+        currentPercent++;
+        setProgress(currentPercent);
+        animationFrame = requestAnimationFrame(animateProgress);
+      }
+
+      function isInViewport() {
+        const rect = container.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom >= 0;
+      }
+
+      function onScroll() {
+        if (isInViewport() && !container.classList.contains('animated')) {
+          container.classList.add('animated');
+          animateProgress();
+          window.removeEventListener('scroll', onScroll);
+        }
+      }
+
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+
+      // slider input
+      slider.addEventListener('input', () => {
+        cancelAnimationFrame(animationFrame);
+        currentPercent = parseInt(slider.value);
+        setProgress(currentPercent);
+      });
+
+      // reset slider to target on mouse leave or touch end
+      function resetToTarget() {
+        if (container.classList.contains('animated')) {
+          currentPercent = targetPercent;
+          setProgress(currentPercent);
+        }
+      }
+      slider.addEventListener('mouseleave', resetToTarget);
+      slider.addEventListener('touchend', resetToTarget);
+    });
+  });
+</script>
+
+
+
+
+
+
+<section id="projects">
+  <h2>Recent Projects</h2>
+  <div class="projects">
+    <a href="home.html" target="_blank" class="project-card">
+      <img src="portfolio.png" alt="Project 1" />
+      <h3>Portfolio Website</h3>
+      <p>
+        A modern, responsive portfolio to showcase my web and graphic design work. Built with React.js and Tailwind CSS.
+      </p>
+    </a>
+    <div class="project-card">
+      <img src="lps.png" alt="Lungujja Progressive Primary School Website" />
+      <h3>LUNGUJJA PROGRESSIVE PRIMARY SCHOOL Website</h3>
+      <p>
+      A vibrant, informative website designed for Lungujja Progressive Primary School.
+       
+      </p>
+    </div>
+    <div class="project-card">
+      <img src="Screenshot 2025-07-21 163054.png" alt="Media 5 Avenue Branding" />
+      <h3>Media 5 Avenue Branding</h3>
+      <p>
+      Developed a full branding suite for Media 5 Avenue, a creative agency specializing in brand identity.
+    </div>
+    <!-- Duplicate cards for layout demo -->
+    <div class="project-card">
+      <img src="deliverplus.png" alt="Deliver+ E-commerce Company" />
+      <h3>Deliver+ E-commerce Company</h3>
+      <p>
+      Designed and developed a modern e-commerce platform for Deliver+, focusing on seamless shopping, fast delivery, and user-friendly experience.
+      </p>
+    </div>
+    <div class="project-card">
+      <img src="nations.png" alt="Nations Website" />
+      <h3>Nations Website</h3>
+      <p>
+      A visually engaging website designed for Nations, focusing on modern layouts, branding, and seamless user experience.
+      </p>
+    </div>
+    
+  </div>
+</section>
+
+<style>
+#projects {
+  padding: 2rem 1rem;
+}
+#projects h2 {
+  text-align: center;
+  color: #00ffd5;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: #181828;
+  border-radius: 12px;
+  padding: 10px;
+  width: calc(20% - 1.2rem); /* 5 cards per row */
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s;
+  transition: 0.1s ease-in-out;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.project-card h3 {
+  color: #00ffd5;
+  font-size: 1.2rem;
+  margin: 0 0 0.4rem 0;
+}
+
+.project-card p {
+  color: #bffcff;
+  font-size: 1rem;
+}
+
+/* Medium screens: 3 cards per row */
+@media (max-width: 1024px) {
+  .project-card {
+    width: calc(33.33% - 1.2rem);
+  }
+}
+
+/* Small screens: 2 cards per row */
+@media (max-width: 768px) {
+  .project-card {
+    width: calc(50% - 1.2rem);
+  }
+}
+
+/* Extra small: full width */
+@media (max-width: 480px) {
+  .project-card {
+    width: 100%;
+  }
+}
+</style>
+
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="testimonials-row">
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <p>"Innocent's attention to detail and creative flair brought our brand to life. The website exceeded our expectations and the process was smooth from start to finish."</p>
+      </div>
+      <div class="testimonial-info">
+        <strong>Sarah Kamanzi</strong><br>
+        <span>Marketing Manager, BrightTech</span><br>
+        <small>Loved the fast turnaround and unique design ideas.</small>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <p>"Working with Innocent was a pleasure. He transformed our vision into a stunning UI and was always open to feedback and collaboration."</p>
+      </div>
+      <div class="testimonial-info">
+        <strong>James Okello</strong><br>
+        <span>Product Lead, ShopEase</span><br>
+        <small>Impressed by his React.js expertise and professionalism.</small>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <p>"The graphics and motion designs Innocent delivered made our campaign stand out. Highly recommended for any creative project!"</p>
+      </div>
+      <div class="testimonial-info">
+        <strong>Linda Nansubuga</strong><br>
+        <span>Creative Director, Nova Agency</span><br>
+        <small>Appreciated his reliability and fresh concepts.</small>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <p>"Innocent's UI/UX skills helped us boost user engagement. He is responsive, talented, and a true team player."</p>
+      </div>
+      <div class="testimonial-info">
+        <strong>Michael Tumusiime</strong><br>
+        <span>Startup Founder, EduPlus</span><br>
+        <small>Valued his clear communication and dedication.</small>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-content">
+        <p>"From branding to web development, Innocent delivers quality work every time. I trust him with all my digital projects."</p>
+      </div>
+      <div class="testimonial-info">
+        <strong>Grace Nabirye</strong><br>
+        <span>Entrepreneur</span><br>
+        <small>Always delivers on time and goes the extra mile.</small>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+#testimonials {
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #181828 60%, #24243e 100%);
+  border-radius: 18px;
+  margin: 40px 0;
+}
+#testimonials h2 {
+  text-align: center;
+  color: #00ffd5;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+.testimonials-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+.testimonial-card {
+  background: #1e1e2f;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  padding: 1.5rem 1.2rem;
+  width: 320px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  transition: transform 0.2s;
+}
+.testimonial-card:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+.testimonial-content p {
+  color: #bffcff;
+  font-size: 1.08rem;
+  margin-bottom: 1.1rem;
+  font-style: italic;
+}
+.testimonial-info {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.testimonial-info strong {
+  color: #ffd700;
+  font-size: 1.08rem;
+}
+.testimonial-info span {
+  color: #00ffd5;
+  font-size: 0.98rem;
+}
+.testimonial-info small {
+  color: #bffcff;
+  font-size: 0.93rem;
+}
+@media (max-width: 900px) {
+  .testimonials-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .testimonial-card {
+    width: 95%;
+  }
+}
+</style>
+
+  <section id="contact">
+    <h2>Contact Me</h2> 
+    <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+    <div class="contact-buttons">
+      <a href="https://wa.me/256760891717" target="_blank">Chat on WhatsApp</a>
+      <a href="tel:+256760891717" class="call">Call Me Direct</a>
+    </div>
+  </section>
+
+  
+
+  <script>
+    // Slide-in sections on scroll
+function slideInSections() {
+  const sections = document.querySelectorAll('section');
+
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      section.classList.add('visible');
+    }
+  });
+}
+
+
+window.addEventListener('scroll', slideInSections);
+window.addEventListener('DOMContentLoaded', slideInSections);
+
+    </script>
+
+
+    <!-- Enhanced Footer with Social Media Icons and Info -->
+    <footer>
+        <div class="brand-scrollbar">
+            <div class="brand-track">
+                <img src="logo1.png" alt="Brand 1" class="brand-logo" />
+                <img src="logo2.png" alt="Brand 2" class="brand-logo" />
+                <img src="logo3.png" alt="Brand 3" class="brand-logo" />
+                <img src="logo6.png" alt="Brand 4" class="brand-logo" />
+                <img src="MEDIA_5_logo-3.png" alt="Brand 5" class="brand-logo" />
+                <!-- Repeat or add more logos as needed -->
+            </div>
+        </div>
+        <p>
+            Email: <a href="mailto:twiininno108@gmail.com" style="color:#00ffcc;">twiininno108@gmail.com</a> |
+            Phone: <a href="tel:+256 760891717" style="color:#00ffcc;"><i class="fas fa-phone"></i> +256 760891717</a>
+        </p>
+        <div class="socials">
+            <a href="https://facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/ashleykarim5" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://instagram.com/tuiingrahics" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/256760891717" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>&copy; 2025 Tumwiine Innocent. All rights reserved.</p>
+    </footer>
+    <style>
+    .brand-scrollbar {
+        width: 100%;
+        overflow: hidden;
+        margin: 0;
+        margin-bottom: 18px;
+        background: #181828;
+        border-radius: 10px;
+        padding: 10px 0;
+        box-sizing: border-box;
+        position: relative;
+    }
+    .brand-track {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        animation: brand-scroll 18s linear infinite;
+        will-change: transform;
+    }
+    .brand-logo {
+        height: 48px;
+        width: auto;
+        transition: filter 0.3s;
+        filter: grayscale(0);
+        cursor: pointer;
+    }
+    .brand-logo:hover {
+        filter: grayscale(1);
+    }
+    @keyframes brand-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    /* Duplicate logos for seamless loop */
+   
+    @media (max-width: 600px) {
+        .brand-logo {
+            height: 32px;
+        }
+        .brand-scrollbar {
+            padding: 6px 0;
+        }
+    }
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Duplicate brand logos for seamless infinite scroll
+        const track = document.querySelector('.brand-track');
+        if (track) {
+            track.innerHTML += track.innerHTML;
+        }
+    });
+    </script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('header nav a');
+
+  function setActiveLink() {
+    let index = sections.length;
+    while(--index >= 0) {
+      const section = sections[index];
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 120) { // 120px offset for sticky header
+        navLinks.forEach(link => link.classList.remove('active'));
+        const id = section.getAttribute('id');
+        const activeLink = document.querySelector(`header nav a[href="#${id}"]`);
+        if (activeLink) activeLink.classList.add('active');
+        break;
+      }
+    }
+  }
+
+  window.addEventListener('scroll', setActiveLink);
+  setActiveLink();
+});
+</script>
+</body>
+
+</html>
